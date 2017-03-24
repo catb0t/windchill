@@ -1,5 +1,5 @@
-# bank.c
+# windchil
 
 ---
 
-Banking application in C11. Just for fun, mostly.
+Humidity-aware windchill in C11
