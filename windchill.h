@@ -70,7 +70,7 @@ const_func ldbl_t wc_windchill_from_str_array (char** str, const size_t len) {
       compare_eps(vals[i], 0.f, 1e-8) // vals[i] is 0
       && ( ! strncmp( str[ i == 1 ? 2 : i ], endptrs[i], 20 ) ) // and endptr was unchanged
     ) {
-      printf("bad conversion: %s: %s", __func__, str[ i == 1 ? 2 : i ] );
+      printf("bad conversion: %s: %s\n", __func__, str[ i == 1 ? 2 : i ] );
       return 0.f;
     }
   }

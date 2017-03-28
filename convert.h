@@ -172,26 +172,29 @@ const_func rate_t convert_str_to_rate (const char* const s) {
 }
 
 char* strip_outerws (const char* const str) {
-  if (! str || ! str[0] || str_count(str, " ") == safestrnlen(str)) { return make_empty_str(); }
 
-  const size_t bws = strspn(str, " ");
+  if (! str || ! str[0] || ( str_count(str, " ") == safestrnlen(str) )) { return make_empty_str(); }
 
-  size_t restlen = safestrnlen(str + bws);
-
-  printf("bws: %zu\nlens: %zu/%zu\n", bws, safestrnlen(str), restlen);
+  const size_t
+    bws     = strspn(str, " "),
+    restlen = safestrnlen(str + bws);
 
   const char* const rns = str_reverse(strndup(str + bws, restlen));
 
+  const size_t ews = strspn(rns, " ");
+
+  return str_reverse(strndup(rns + ews, safestrnlen(rns) - ews));
+}
+
+  /*
+  printf("bws: %zu\nlens: %zu/%zu\n", bws, safestrnlen(str), restlen);
   printf(
     "str + bws:%s:\n"
     "rns      :%s:\n",
     str + bws,
     rns
   );
-  return NULL;
-/*  size_t ews = strspn(str, " ");
   printf("ews: %zu\n", ews);
+  */
 
-  return str_reverse(strndup(rns + ews, safestrnlen(str) - ews));
-*/
-}
+
