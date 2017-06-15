@@ -28,13 +28,13 @@ int main(void) {
       }
 
       printf("malformed input: %s\n", cut);
-      
+
     }
 
     safefree(cut);
   }
 
-  ldbl_t wc = wc_windchill_from_str_array(spl, len);
+  ldbl_t wc = wc_windchill_from_str_array((const char* const * const) spl, len);
 
   printf("windchill: %LG\n", wc);
 

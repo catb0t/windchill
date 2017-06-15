@@ -15,7 +15,7 @@ e = (rh / 100) * 6.105 * exp( (17.27 * Ta) / (237.7 + Ta))
 
 ldbl_t         wc_wvp_from_humtemp (const ldbl_t relhum, const ldbl_t airtemp, const temp_t temp_unit);
 ldbl_t            wc_get_windchill (const ldbl_t airtemp, const temp_t temp_unit, const ldbl_t relhum, const ldbl_t windspd, const rate_t wind_unit);
-ldbl_t wc_windchill_from_str_array (char** str, const size_t len);
+ldbl_t wc_windchill_from_str_array (const char* const * const str, const size_t len);
 
 ldbl_t wc_wvp_from_humtemp (const ldbl_t relhum, const ldbl_t airtemp, const temp_t temp_unit) {
   const ldbl_t abshum = relhum < 0.f // negative?
@@ -35,7 +35,7 @@ ldbl_t wc_get_windchill (const ldbl_t airtemp, const temp_t temp_unit, const ldb
   return c_temp + (0.33 * wc_wvp_from_humtemp(relhum, c_temp, TEMP_C)) - (.7 * convert_rate(windspd, wind_unit, RATE_MS)) - 4.0;
 }
 
-const_func ldbl_t wc_windchill_from_str_array (char** str, const size_t len) {
+const_func ldbl_t wc_windchill_from_str_array (const char* const * const str, const size_t len) {
 
   if ( len < 5 ) { return 0.f; }
 
