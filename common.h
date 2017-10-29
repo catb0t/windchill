@@ -768,7 +768,7 @@ const_func size_t* str_count_sp (const char* haystack, const char* needles) {
 
   size_t* cts = alloc(size_t, len_needles);
 
-  if (! (len_haystack * len_needles) ) {
+  if (! (len_haystack && len_needles) ) {
     goto end;
   }
 
